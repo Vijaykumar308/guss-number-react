@@ -1,12 +1,118 @@
-#root {
-  max-width: 1280px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: normal;
+}
+
+:root {
+  /* --theam-color: #272729; */
+  --theam-color: #2c376c;
+  --white: #ffffff;
+}
+
+/*  ================ Layout Design ======================= */
+body {
+  background: var(--theam-color);
+}
+.container {
+  width: 90%;
   margin: 0 auto;
-  padding: 2rem;
+}
+
+.play-screen, .full-screen {
+  height: 100vh;
 }
 
 .flex {
   display: flex;
-  justify-content: space-around;
+}
+
+.align-item-center {
+  align-items: center;
+}
+
+.text-white {
+  color: var(--white);
+}
+
+/* ================ PlayScreen Design =================== */
+
+.left-side {
+  flex: 1;
+  display: grid;
+  place-items: center;
+}
+
+.game-box {
+  max-width: 45%;
+  height: 260px;
+  padding: 20px 30px;
+  background: var(--white);
+  text-align: center;
+  border-radius: 14px;
+  box-shadow: -18px 13px black;
+}
+
+.game-box p {
+  font-size: 13px;
+  padding: 40px 0;
+}
+
+
+.right-side {
+  flex: 1;
+}
+
+.Game-text {
+  letter-spacing: 1px;
+  line-height: 70px;
+}
+
+.Game-text p {
+  background: #fff;
+  width: fit-content;
+  color: var(--theam-color);
+  font-weight: 800;
+  padding: 5px 10px;
+  font-size: 70px;
+  margin: 16px 0;
+}
+
+.Game-text h1 {
+  text-shadow: 4px 1px 0px black;
+  color:red;
+}
+
+/* ===================== Game Screen ==================== */
+
+.game-screen .left-side {
+  align-self: normal;
+}
+
+.score-box {
+  background-color: white;
+  width: 300px;
+  padding-top: 20px;
+  border-radius: 10px;
+}
+
+.score-box button {
+  all: unset;
+  text-align: center;
+  background-color: #ebeef3;
+  color: #000;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 10px 0;
+  width: 100%;
+  cursor: pointer;
+}
+
+.score {
+  color: var(--theam-color);;
+  font-size: 60px;
+  padding-bottom: 30px;
 }
 
 /* ================ Chat CSS Start =================*/
@@ -21,14 +127,20 @@
   border-radius: 0 0px 5px 5px;
   overflow: hidden;
   color: black;
+  background: #ebeef3;
 }
 
 .chat-instructions {
-  background-color: #242424;
-  color: gold;
-  font-size: 14px;
-  text-align: center;
+  background-color: var(--white);
+  color: var(--theam-color);
   padding: 0 50px;
+}
+
+.chat-instructions p {
+  font-size: 11px;
+  padding: 10px 0;
+  font-weight: 600;
+  text-align: center;
 }
 
 .chat-messages {
@@ -39,6 +151,14 @@
   border-bottom: 1px solid #ddd;
   display: flex;
   flex-direction: column;
+}
+
+.chat-messages .date {
+  font-size: 10px;
+  background: #d2d3d6;
+  padding: 4px 6px;
+  border-radius: 5px;
+  font-weight: 600;
 }
 
 .message {
@@ -57,19 +177,20 @@
 .message-content {
   display: inline-block;
   max-width: 70%;
-  padding: 10px;
+  padding: 10px 10px 3px;
   border-radius: 10px;
   word-wrap: break-word;
 }
 
 .message-content.sent {
-  background-color: #d89561;
+  background-color: #10b982;
   color: white;
 }
 
 .message-content.received {
-  background-color: #65b2d5;
-  color: #fff;
+  background-color: var(--white);
+  color: #000;
+  font-size: 11px;
 }
 
 .chat-time {
@@ -173,3 +294,27 @@
 
 
 /* ================ Modal CSS Ends =============== */
+
+.play-button {
+  background-color: #2c376c;
+  color: #fff;
+  padding: 15px 30px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  text-decoration: none;
+}
+
+.play-button:hover {
+  background-color: #1c244d;
+  transform: scale(1.05);
+}
+
+.play-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.5);
+}

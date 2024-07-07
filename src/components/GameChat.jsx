@@ -15,7 +15,7 @@ function GameChat({generatedNumber, setGuessCounter, setWin}) {
       return botMessage = `Actual number is less than that number`;
     }
     if(input === generatedNumber) {
-     return botMessage = "Congratulations! You've win";
+     return botMessage = "Congratulations! You've won";
     }
   }
 
@@ -25,7 +25,7 @@ function GameChat({generatedNumber, setGuessCounter, setWin}) {
     setInput('');
     const botMessage = GameLogic();
 
-    if(botMessage === "Congratulations! You've win") {
+    if(botMessage === "Congratulations! You've won") {
       setWin(true);
     }
 
@@ -50,8 +50,21 @@ function GameChat({generatedNumber, setGuessCounter, setWin}) {
       const hours = now.getHours().toString().padStart(2, '0');
       const minutes = now.getMinutes().toString().padStart(2, '0');
       return `${hours}:${minutes}`;
-    }
+  }
+
+  function getFormattedDate() {
+    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    const day = now.getDate();
+    const specificDate = new Date(year, month, day); // month - 1 because months are 0-indexed
+    const dayOfWeek = daysOfWeek[specificDate.getDay()];
+    const monthName = monthsOfYear[specificDate.getMonth()]; // Get the month name
     
+    return `${dayOfWeek},  ${day} ${monthName} ${year}`;
+}
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -60,15 +73,18 @@ function GameChat({generatedNumber, setGuessCounter, setWin}) {
   return (
     <div className="chat-container">
       <div className="chat-instructions">
-        <p>The Computer has Generated a number between 1 to 100. You've to guss that number. 
-        Best of Luck !
+        <p> 🚀The Computer has Generated a number between 1 to 100. You've to guss that number. <br />
+        Best of Luck 👍
         </p>
       </div>
       <div className="chat-messages" id="chat-messages">
+        <div style={{textAlign:"center"}}>
+          <span className='date'>{getFormattedDate()}</span>
+        </div>
         {messages.map((msg, index) => (
           <div key={index} className={`message ${msg.sender === 'user' ? 'sent' : 'received'}`}>
             <div className={`message-content ${msg.sender === 'user' ? 'sent' : 'received'}`}>
-              {msg.text}
+              <span>{msg.text}</span>
               <span className='chat-time'>{getCurrentTime()}</span>
             </div>
           </div>

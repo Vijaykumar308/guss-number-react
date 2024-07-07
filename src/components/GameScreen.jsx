@@ -21,31 +21,35 @@ function GameScreen({setShowPlayScreen}) {
   },[])
 
   return (
-    <div className="container flex">
-      <div className="left-side">  
-        <h2> {guessCounter} </h2>
-        <button className="game-quit-btn" onClick={handlerQuitGame}>Quit Game</button>
-      </div>
+    <div className="full-screen">
+      <div className="game-screen full-screen flex align-item-center">
+        <div className="left-side">  
+          <div className="score-box">
+            <h2 className="score" style={{textAlign:"center"}}> {guessCounter} <p style={{fontSize:"13px"}}>No of Guesses</p> </h2>
+            <button className="game-quit-btn" onClick={handlerQuitGame}>Quit Game</button>
+          </div>
+        </div>
 
-      {
-        show && <Modal 
-                  closeModal={setShow} 
-                  message={`Your number was ${generatedNumber}`}
-                  setShowPlayScreen={setShowPlayScreen}
-                /> 
-      }
+        {
+          show && <Modal 
+                    closeModal={setShow} 
+                    message={`Your number was ${generatedNumber}`}
+                    setShowPlayScreen={setShowPlayScreen}
+                  /> 
+        }
 
-      {
-        win && <Modal 
-        closeModal={setShow} 
-        message={`Congratulations! You Won. Your Guess It in ${guessCounter} times.`}
-        setShowPlayScreen={setShowPlayScreen}
-      /> 
-      }
+        {
+          win && <Modal 
+          closeModal={setShow} 
+          message={`Well done! You emerged victorious. You make ${guessCounter} guesses.`}
+          setShowPlayScreen={setShowPlayScreen}
+        /> 
+        }
 
 
-      <div className="right-side">
-        <GameChat setGuessCounter={setGuessCounter} generatedNumber={generatedNumber} setWin={setWin}/>
+        <div className="right-side">
+          <GameChat setGuessCounter={setGuessCounter} generatedNumber={generatedNumber} setWin={setWin}/>
+        </div>
       </div>
     </div>
   )
